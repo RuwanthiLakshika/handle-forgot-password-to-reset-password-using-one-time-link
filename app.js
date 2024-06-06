@@ -66,7 +66,27 @@ app.get('/reset-password/:id/:token', (req, res) => {
 
 app.post('/reset-password/:id/:token', (req, res) => {
     const { id, token } = req.params;
-    res.send(user);
+    const { password,confirmpassword } = req.body;
+
+    //check if the user exists in database
+    if(id !== user.id){
+        return res.status(404).send('User not found');
+    }
+
+    //we have the user, now check if the token is valid
+    const secret = JWT_SECRET + user.password;
+    try{
+        const payload = jwt.verify(token, secret);
+        //validate password and confirm password match
+        //we can simply find the user with the paylod email and id and finally update with new password
+        //always hash the password before saving
+        user.password = password;
+        res.send(user);
+
+    } catch (error) {
+        console.log(error.message);
+        return res.status(400).send('Invalid token');
+    }
 });
 
 app.listen(3000, () => {

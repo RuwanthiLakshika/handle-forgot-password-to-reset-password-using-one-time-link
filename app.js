@@ -46,11 +46,27 @@ app.post('/forgot-password', (req, res) => {
 
 app.get('/reset-password/:id/:token', (req, res) => {
    const { id, token } = req.params;
-   res.send(req.params);    
+   
+   //check if the user exists in database
+    if(id !== user.id){
+         return res.status(404).send('User not found');
+    }
+
+    //we have the user, now check if the token is valid
+    const secret = JWT_SECRET + user.password;
+    try{
+        const payload = jwt.verify(token, secret);
+        //valid token, now allow user to change password
+        res.render('reset-password', { email: user.email });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(400).send('Invalid token');
+    }
 });
 
-app.post('/reset-password', (req, res) => {
-
+app.post('/reset-password/:id/:token', (req, res) => {
+    const { id, token } = req.params;
+    res.send(user);
 });
 
 app.listen(3000, () => {

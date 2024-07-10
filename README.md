@@ -65,4 +65,35 @@ Expiration: The token can have an expiration time (e.g., 15 minutes), limiting t
 
 ![image](https://github.com/RuwanthiLakshika/handle-forgot-password-to-reset-password-using-one-time-link/assets/125971277/8148a1b3-17bb-4a66-a88a-a604b0167ef2)
 
+## Why EJS is Used:
+### Dynamic HTML Rendering:
+EJS allows dynamic rendering of HTML pages based on server-side data, essential for pages like forgot-password and reset-password.   
+
+### Template Reuse:
+Supports reusable templates (e.g., header, footer) for consistent UI across the application without duplicating code.    
+
+### Data Injection:
+Simplifies passing server-side data into HTML templates, crucial for personalizing user experiences such as displaying user emails.       
+
+### Control Structures:
+Enables using JavaScript control structures (like conditionals and loops) within HTML templates, useful for handling complex logic.       
+
+### Integration with Express:
+Integrates seamlessly with Express.js, making it easy to set up and configure within your Node.js web application.        
+
+
+Using EJS with Express.js simplifies backend development by integrating server-side logic directly into views, eliminating the need for separate frontend APIs:
+
+## Benefits:
+Integrated Development: Embed JavaScript directly into HTML for dynamic content.   
+
+Reduced Complexity: No need for separate frontend-backend servers.    
+
+Streamlined Dependencies: Manage all dependencies within a single environment.       
+
+Efficient Development: Rapid prototyping without managing API calls.     
+
+Security and Performance: Keep sensitive logic on the server, enhancing security and performance.
+
+
 
